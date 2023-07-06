@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+  max-width: 500px;
+  margin: auto;
+  padding: 1rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  padding: 0.5rem;
+}

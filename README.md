@@ -1,3 +1,48 @@
+## Issue
+
+During local development `next dev`, a nested page inside of a parallel route without a corresponding matched route inside another parallel route causes an infinite reload, despite the required [default](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#defaultjs) file meant to render as a fallback.
+
+## Links
+
+- https://github.com/vercel/next.js/pull/52061
+- https://github.com/vercel/next.js/issues/51951
+- https://github.com/vercel/next.js/issues/49881#issuecomment-1618501628
+
+## Steps
+
+1. install packages - `pnpm install`
+2. run next dev - `pnpm dev`
+3. navigate to `http://localhost:3000/home/nested` directly to experience the infinite refresh right away.
+   - Timestamp will update on each render.
+   - Server logs from the middleware will populate on each reload
+4. alternatively, navigate to `http://localhost:3000/home/` and then click on the hard navigation and/or the next link for `http://localhost:3000/home/nested`
+   - hard navigation link refreshes infinitely
+   - next link behaves as expected and does not refresh infinitely
+
+Reproduced with `next@13.4.9-canary.2`
+
+## next info
+
+    Operating System:
+      Platform: darwin
+      Arch: arm64
+      Version: Darwin Kernel Version 22.5.0: Thu Jun  8 22:22:23 PDT 2023; root:xnu-8796.121.3~7/RELEASE_ARM64_T6020
+    Binaries:
+      Node: 18.16.0
+      npm: 9.5.1
+      Yarn: N/A
+      pnpm: 8.6.5
+    Relevant Packages:
+      next: 13.4.9-canary.2
+      eslint-config-next: 13.4.8
+      react: 18.2.0
+      react-dom: 18.2.0
+      typescript: 5.1.6
+    Next.js Config:
+      output: N/A
+
+---
+
 This is a [Next.js](https://nextjs.org/) template to use when reporting a [bug in the Next.js repository](https://github.com/vercel/next.js/issues).
 
 ## Getting Started
